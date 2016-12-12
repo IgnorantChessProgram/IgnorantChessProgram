@@ -60,18 +60,26 @@ namespace ICP
         {
             get
             {
-                return White.Pieces[key] ?? Black.Pieces[key] ?? null;
+                if (White.Pieces.ContainsKey(key))
+                {
+                    return White.Pieces[key];
+                }
+                if (Black.Pieces.ContainsKey(key))
+                {
+                    return Black.Pieces[key];
+                }
+                return null;
             }
         }
 
         public string DebugString()
         {
             StringBuilder builder = new StringBuilder();
-            for (int i = 1; i <= 8; i++)
+            for (int rank = 8; rank >= 1; rank--)
             {
-                for (int j = 8; j >= 1; j--)
+                for (int file = 1; file <= 8; file++)
                 {
-                    Piece piece = this[new Coordinate(i, j)];
+                    Piece piece = this[new Coordinate(file, rank)];
                     if (piece != null)
                     {
                         builder.Append(piece.DebugSymbol + " ");
@@ -81,6 +89,7 @@ namespace ICP
                         builder.Append("- ");
                     }
                 }
+                builder.Append("\n");
             }
             return builder.ToString();
         }

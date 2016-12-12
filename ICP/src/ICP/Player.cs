@@ -7,9 +7,9 @@ namespace ICP
 {
     public class Player
     {
-        public Dictionary<Coordinate, Piece> Pieces { get; }
+        public Dictionary<Coordinate, Piece> Pieces { get; } = new Dictionary<Coordinate, Piece>();
 
-        public HashSet<Piece> InactivePieces { get; }
+        public HashSet<Piece> InactivePieces { get; } = new HashSet<Piece>();
 
         public TimeSpan TimeOnClock { get; }
 
