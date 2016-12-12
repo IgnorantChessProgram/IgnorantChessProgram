@@ -5,24 +5,24 @@ using System.Threading.Tasks;
 
 namespace ICP
 {
+    public enum FileLetter
+    {
+        a = 1,
+        b,
+        c,
+        d,
+        e,
+        f,
+        g,
+        h
+    }
+
     public struct Coordinate
     {
-        public enum FileLetter
-        {
-            a = 1,
-            b,
-            c,
-            d,
-            e,
-            f,
-            g,
-            h
-        }
-
         public int Rank { get; }
         public FileLetter File { get; }
 
-        public Coordinate(int rank, int file)
+        public Coordinate(int file, int rank)
         {
             if (rank < 1 || rank > 8 || file < 0 || file > 8)
             {
@@ -32,7 +32,7 @@ namespace ICP
             Rank = rank;
             File = (FileLetter)file;
         }
-        public Coordinate(int rank, FileLetter file) : this(rank, (int) file)
+        public Coordinate(FileLetter file, int rank) : this((int)file, rank)
         {
         }
 
